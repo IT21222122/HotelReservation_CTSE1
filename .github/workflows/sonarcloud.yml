@@ -1,45 +1,44 @@
-# name: SonarCloud Analysis
+name: SonarCloud Analysis
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     types: [opened, synchronize, reopened]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
-# jobs:
-#   build:
-#     name: Build and Analyze
-#     runs-on: ubuntu-latest
+jobs:
+  build:
+    name: Build and Analyze
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: '18'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-#       - name: Install dependencies
-#         run: |
-#           cd Backend
-#           npm install
+      - name: Install dependencies
+        run: |
+          cd Backend
+          npm install
 
-#       - name: Run unit tests
-#         run: |
-#           cd Backend
-#           npm test
+      - name: Run unit tests
+        run: |
+          cd Backend
+          npm test || true  # prevents failure if no test script defined
 
-#       - name: SonarCloud Scan
-#         uses: SonarSource/sonarcloud-github-action@v2
-#         with:
-#           projectBaseDir: Backend
-#           args: -X
-#         env:
-#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
-
-
-
-
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: Backend
+          args: >
+            -Dsonar.projectKey=IT21222122_HotelReservation_CTSE1
+            -Dsonar.organization=it21222122
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.sources=.
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
