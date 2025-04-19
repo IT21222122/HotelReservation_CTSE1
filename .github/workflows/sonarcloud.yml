@@ -29,7 +29,7 @@ jobs:
       - name: Run unit tests
         run: |
           cd Backend
-          npm test || true  # prevents failure if no test script defined
+          npm test || echo "No test script defined"
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
