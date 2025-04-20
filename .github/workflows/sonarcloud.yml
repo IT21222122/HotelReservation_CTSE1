@@ -25,7 +25,12 @@
 name: SonarCloud Analysis
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
 
 jobs:
   DemoSonarCloudScan:
@@ -62,3 +67,4 @@ jobs:
             -Dsonar.projectKey=IT21222122_HotelReservation_CTSE1
             -Dsonar.organization=it21222122
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+
