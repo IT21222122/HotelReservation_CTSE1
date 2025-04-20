@@ -1,3 +1,27 @@
+# name: SonarCloud Analysis
+
+# on:
+#   workflow_dispatch:
+
+# jobs:
+#   DemoSonarCloudScan:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0
+#       - name: SonarCloud Scan
+#         uses: SonarSource/sonarcloud-github-action@v2
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#         with:
+#           args: >
+#             -Dsonar.projectKey=IT21222122_HotelReservation_CTSE1
+#             -Dsonar.organization=it21222122
+#             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+        
+        
 name: SonarCloud Analysis
 
 on:
@@ -6,19 +30,35 @@ on:
 jobs:
   DemoSonarCloudScan:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          cd Backend
+          npm install
+
+      - name: Run Tests with Coverage
+        run: |
+          cd Backend
+          npm test -- --coverage --passWithNoTests
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
+          projectBaseDir: Backend
           args: >
             -Dsonar.projectKey=IT21222122_HotelReservation_CTSE1
             -Dsonar.organization=it21222122
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-        
-        
