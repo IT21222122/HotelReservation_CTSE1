@@ -78,12 +78,12 @@ const UserManagement = () => {
         <Table>
           <TableHead sx={{ backgroundColor: '#1E293B' }}>
             <TableRow>
-              <TableCell sx={{ color: 'white' }}>Name</TableCell>
-              <TableCell sx={{ color: 'white' }}>Email</TableCell>
-              <TableCell sx={{ color: 'white' }}>Mobile</TableCell>
-              <TableCell sx={{ color: 'white' }}>NIC</TableCell>
-              <TableCell sx={{ color: 'white' }}>User Type</TableCell>
-              <TableCell sx={{ color: 'white' }}>Actions</TableCell>
+              <th sx={{ color: 'white' }}>Name</th>
+              <th sx={{ color: 'white' }}>Email</th>
+              <th sx={{ color: 'white' }}>Mobile</th>
+              <th sx={{ color: 'white' }}>NIC</th>
+              <th sx={{ color: 'white' }}>User Type</th>
+              <th sx={{ color: 'white' }}>Actions</th>
             </TableRow>
           </TableHead>
           <TableBody>
