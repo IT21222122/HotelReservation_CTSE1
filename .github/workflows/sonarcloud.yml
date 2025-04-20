@@ -19,5 +19,6 @@ jobs:
           args: >
             -Dsonar.projectKey=IT21222122_HotelReservation_CTSE1
             -Dsonar.organization=it21222122
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
         
         
