@@ -28,9 +28,13 @@ app.use('/api/users',authRoutes);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
+<<<<<<< HEAD
 
 //CI/CD Pipeline testing
 //testing1
 
 
 
+=======
+//Changes doneeeee
+>>>>>>> ac22833966e71842f3cfb3a55f83b5236b08db85
