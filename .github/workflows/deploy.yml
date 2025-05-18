@@ -24,15 +24,15 @@ jobs:
 
       # Backend
       - name: Build backend Docker image
-        run: docker build -t gcr.io/hotel-reservation-microservice/hotel-backend ./Backend
+        run: docker build -t asia.gcr.io/hotel-reservation-microservice/hotel-backend ./Backend
 
       - name: Push backend Docker image
-        run: docker push gcr.io/hotel-reservation-microservice/hotel-backend
+        run: docker push asia.gcr.io/hotel-reservation-microservice/hotel-backend
 
       - name: Deploy backend to Cloud Run
         run: |
           gcloud run deploy hotel-backend \
-            --image gcr.io/hotel-reservation-microservice/hotel-backend \
+            --image asia.gcr.io/hotel-reservation-microservice/hotel-backend \
             --region asia-south1 \
             --platform managed \
             --allow-unauthenticated \
@@ -40,15 +40,15 @@ jobs:
 
       #Frontend
       - name: Build frontend Docker image
-        run: docker build -t gcr.io/hotel-reservation-microservice/hotel-frontend ./frontend
+        run: docker build -t asia.gcr.io/hotel-reservation-microservice/hotel-frontend ./frontend
 
       - name: Push frontend Docker image
-        run: docker push gcr.io/hotel-reservation-microservice/hotel-frontend
+        run: docker push asia.gcr.io/hotel-reservation-microservice/hotel-frontend
 
       - name: Deploy frontend to Cloud Run
         run: |
           gcloud run deploy hotel-frontend \
-            --image gcr.io/hotel-reservation-microservice/hotel-frontend \
+            --image asia.gcr.io/hotel-reservation-microservice/hotel-frontend \
             --region asia-south1 \
             --platform managed \
             --allow-unauthenticated \
