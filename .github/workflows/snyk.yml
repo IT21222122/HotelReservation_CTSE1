@@ -1,0 +1,21 @@
+name: Snyk Security Scan
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master  # use `docker@master` for Docker scans
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: test
